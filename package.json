@@ -1,0 +1,28 @@
+{
+  "name": "mybrary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dustin2400/Mybrary.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dustin2400/Mybrary/issues"
+  },
+  "homepage": "https://github.com/Dustin2400/Mybrary#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express-session": "^1.17.2",
+    "express.js": "^1.0.0",
+    "mysql": "^2.18.1",
+    "sequelize": "^6.12.0"
+  }
+}
