@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS mybrary_db;
+
+CREATE DATABASE mybrary_db;
