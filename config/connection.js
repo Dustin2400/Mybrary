@@ -14,5 +14,6 @@ if (process.env.JAWSDB_URL) {
         port: 3306
     });
 }
+//heroku deployment will be last step
 
 module.exports = sequelize;
