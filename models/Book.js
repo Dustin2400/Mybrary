@@ -12,7 +12,11 @@ Book.init(
             primaryKey: true,
             autoIncrement: true
         },
-        Author: {
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        author: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -20,10 +24,10 @@ Book.init(
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        return_date: {
-            type: DataTypes.DATE,
-            allowNull: true,
-        },
+        // return_date: {
+        //     type: DataTypes.DATE,
+        //     allowNull: true,
+        // },
         votes: {
             type: DataTypes.INTEGER,
             allowNull: false,
