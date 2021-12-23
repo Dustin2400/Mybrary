@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
             },
             {
                 model: User,
-                attributes: ['username', 'checked_out']
+                attributes: ['username']
             }
         ]
     })
@@ -53,7 +53,7 @@ router.get('/:id', (req, res) => {
             },
             {
                 model: User,
-                attributes: ['username', 'checked_out']
+                attributes: ['username']
             }
         ]
     })
@@ -68,15 +68,16 @@ router.get('/:id', (req, res) => {
        console.log(err);
        res.status(500).json(err);
    })
-})
+});
 
 //CREATE/POST Book - made by user
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     Book.create({
         title: req.body.title,
         author: req.body.author,
         category_id: req.body.category_id,
-        user_id: req.session.user_id
+        user_id: req.body.user_id,
+        checked_out: false
     })
     .then(dbBookData => res.json(dbBookData))
     .catch(err => {
@@ -86,26 +87,20 @@ router.post('/', withAuth, (req, res) => {
 });
 
 //PUT - vote addon for each book as voted by users 
-router.put('/vote', withAuth, (req, res) => {
-    if(req.session){
-        Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
-        .then(votedData => res.json(votedData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-    }
-});
+// router.put('/vote', withAuth, (req, res) => {
+//     if(req.session){
+//         Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
+//         .then(votedData => res.json(votedData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+//     }
+// });
 
 //PUT - update book based on id and other attributes when needed - test out 
-router.put('/:id', withAuth, (req, res) => {
-    Book.update(
-        {
-            title: req.body.title,
-            author: req.body.author,
-            category_id: req.body.category_id,
-            user_id: req.session.user_id
-        },
+router.put('/:id', (req, res) => {
+    Book.update(req.body,
         {
             where: {
                 id: req.params.id
@@ -126,7 +121,7 @@ router.put('/:id', withAuth, (req, res) => {
 });
 
 //DELETE - DELETE a book by its respective id
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     console.log('id', req.params.id);
     Book.destroy({
         where: {

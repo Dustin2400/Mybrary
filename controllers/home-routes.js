@@ -43,4 +43,6 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+module.exports = router;
 //check whether to add a dashboard routes - check with group

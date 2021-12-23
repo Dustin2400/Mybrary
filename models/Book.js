@@ -28,10 +28,6 @@ Book.init(
         //     type: DataTypes.DATE,
         //     allowNull: true,
         // },
-        votes: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
         category_id: {
             type: DataTypes.INTEGER,
             refernces: {
