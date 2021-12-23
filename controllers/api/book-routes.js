@@ -85,17 +85,18 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
-//PUT - vote addon for each book as voted by users 
-router.put('/vote', withAuth, (req, res) => {
-    if(req.session){
-        Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
-        .then(votedData => res.json(votedData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-    }
-});
+//Make a VOTE model
+// //PUT - vote addon for each book as voted by users 
+// router.put('/vote', withAuth, (req, res) => {
+//     if(req.session){
+//         Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
+//         .then(votedData => res.json(votedData))
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+//     }
+// });
 
 //PUT - update book based on id and other attributes when needed - test out 
 router.put('/:id', withAuth, (req, res) => {
