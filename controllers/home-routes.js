@@ -4,7 +4,7 @@ const { Book, Category, Review, User } = require('../models');
 
 //obtain all books for user to see on homepage
 router.get('/', (req, res) => {
-    Post.findAll({
+   Book.findAll({
         attributes: [
             'id',
             'author',
@@ -43,6 +43,5 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
-
-module.exports = router;
 //check whether to add a dashboard routes - check with group
+module.exports = router;

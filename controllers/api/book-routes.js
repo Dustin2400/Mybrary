@@ -86,7 +86,8 @@ router.post('/', (req, res) => {
     });
 });
 
-//PUT - vote addon for each book as voted by users 
+//Make a VOTE model
+// //PUT - vote addon for each book as voted by users 
 // router.put('/vote', withAuth, (req, res) => {
 //     if(req.session){
 //         Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
