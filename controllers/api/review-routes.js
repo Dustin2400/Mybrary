@@ -12,24 +12,43 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    Review.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model: Book
+            }
+        ]
+    })
+    .then(dbReviewData => {
+        res.json(dbReviewData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 //POST a review
-router.post('/', withAuth, (req, res) => {
-    if (req.session) {
+router.post('/', (req, res) => 
+    {
         Review.create({
-            review_text: req.body.review_text,
-            post_id: req.body.post_id,
-            user_id: req.session.user_id
+            content: req.body.content,
+            book_id: req.body.book_id,
+            user_id: req.body.user_id
         })
         .then(dbReviewData => res.json(dbReviewData))
         .catch(err => {
             console.log(err);
             res.status(400).json(err);
         });
-    }
 });
 
 //DESTROY delete a review
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Review.destroy({
         where: {
             id: req.params.id

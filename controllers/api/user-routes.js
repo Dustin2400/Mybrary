@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Review } = require('../../models');
+const { User, Book, Comment, Review } = require('../../models');
 
 //GET all users
 router.get('/', (req, res) => {
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Book,
-                attributes: ['id', 'Author', 'checked_out', 'return_date', 'votes', 'category_id', 'user_id'],
+                attributes: ['id', 'Author', 'checked_out', 'category_id', 'user_id'],
                 include: {
                     model: Review, 
                     attributes: ['content']
@@ -51,13 +51,13 @@ router.post('/', (req, res) => {
         password: req.body.password
     })
     .then(dbUserData => {
-        req.session.save(() => {
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
+        // req.session.save(() => {
+        //     req.session.user_id = dbUserData.id;
+        //     req.session.username = dbUserData.username;
+        //     req.session.loggedIn = true;
 
             res.json(dbUserData);
-        });
+        // });
     })
     .catch(err => {
         console.log(err);
