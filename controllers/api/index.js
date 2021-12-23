@@ -4,7 +4,7 @@ const router = require('express').Router();
 //CRUD methods, get all, get one by id, create, update, delete,
 //allow users to create the books for their library - run by a TA 
 
-const bookRoutes = require('./user-routes.js');
+const bookRoutes = require('./book-routes.js');
 const categoryRoutes = require('./category-routes');
 const reviewRoutes = require('./review-routes');
 const userRoutes = require('./user-routes');
