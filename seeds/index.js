@@ -2,6 +2,7 @@ const seedCategories = require('./category-seeds');
 const seedBooks = require('./book-seeds');
 const seedUsers = require('./user-seeds');
 const seedReviews = require('./review-seeds');
+const seedVotes = require('./vote-seeds');
 
 const sequelize = require('../config/connection');
 
@@ -20,6 +21,9 @@ const seedAll = async () => {
 
     await seedReviews();
     console.log('Reviews seeded');
+
+    await seedVotes();
+    console.log('Votes seeded');
 }
 
 seedAll();

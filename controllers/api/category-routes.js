@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
 });
 
 //POST - create a new category for bookss
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     Category.create(req.body)
     .then(categoryData => {
         console.log('Router to create a category', categoryData);
@@ -46,6 +46,7 @@ router.post('/', withAuth, (req, res) => {
 });
 
 //PUT - update a category by its id
+
 // router.put('/:id', withAuth, (req, res) => {
 //     Category.update(req.body, {
 //         where: {
