@@ -100,47 +100,54 @@ router.post('/', (req, res) => {
 // });
 
 //PUT - update book based on id and other attributes when needed - test out 
-router.put('/:id', (req, res) => {
-    Book.update(req.body,
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-    .then(dbBookData => {
-        if(!dbBookData) {
-            res.status(400).json({ message: 'No book found.'});
-            return;
-        }
-        res.json(dbBookData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+
+// router.put('/:id', withAuth, (req, res) => {
+//     Book.update(
+//         {
+//             title: req.body.title,
+//             author: req.body.author,
+//             category_id: req.body.category_id,
+//             user_id: req.session.user_id
+//         },
+//         {
+//             where: {
+//                 id: req.params.id
+//             }
+//         }
+//     )
+//     .then(dbBookData => {
+//         if(!dbBookData) {
+//             res.status(400).json({ message: 'No book found.'});
+//             return;
+//         }
+//         res.json(dbBookData);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
 
 //DELETE - DELETE a book by its respective id
-router.delete('/:id', (req, res) => {
-    console.log('id', req.params.id);
-    Book.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(dbBookData => {
-        if(!dbBookData) {
-            res.status(400).json({ message: 'No book found.'});
-            return;
-        }
-        res.json(dbBookData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+// router.delete('/:id', withAuth, (req, res) => {
+//     console.log('id', req.params.id);
+//     Book.destroy({
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//     .then(dbBookData => {
+//         if(!dbBookData) {
+//             res.status(400).json({ message: 'No book found.'});
+//             return;
+//         }
+//         res.json(dbBookData);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
 
 //votes attach to books - should implement as a book attribute - vote considered as potential Model/api
 //do we need to implement a book image cover - ask the TAs - upload asset in public file then relative path in database or object itself?
