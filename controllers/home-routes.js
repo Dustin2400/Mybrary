@@ -7,10 +7,10 @@ router.get('/', (req, res) => {
    Book.findAll({
         attributes: [
             'id',
+            'title',
             'author',
             'checked_out',
-            'return_date',
-            'votes',
+            // 'return_date',
             'category_id',
             'user_id',
             // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE ')] - sequelize confuses me tbh 
@@ -27,14 +27,18 @@ router.get('/', (req, res) => {
             {
                 model: User,
                 attributes: ['username']
+            },
+            {
+                model: Category,
+                attributes: ['name']
             }
         ]
     })
     .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
-
+        const books = dbPostData.map(post => post.get({ plain: true }));
+        console.log(books)
         res.render('homepage', {
-            posts,
+            books,
             loggedIn: req.session.loggedIn
         });
     })
@@ -43,5 +47,45 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+router.get('/book/:id', (req, res) => {
+    Book.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model: Category,
+                attributes: ['name']
+            },
+            {
+                model: Review,
+                attributes: ['content'],
+                include: [
+                    {
+                    model: User,
+                    attributes: ['username']
+                    }
+                ]
+            }
+        ]
+    })
+    .then(dbBookData => {
+        if (!dbBookData) {
+            res.status(404).json({ message: 'No book found with this id'});
+            return;
+        }
+        const book = dbBookData.get({ plain: true});
+        console.log(book);
+        res.render('book', {
+            book,
+            loggedIn: req.session.loggedIn
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
 //check whether to add a dashboard routes - check with group
 module.exports = router;

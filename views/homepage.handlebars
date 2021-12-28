@@ -1,45 +1,6 @@
- <section>
-  <div>
-<p>
-  You can search here by author, genre, and reviews:
-</p>
-  </div>
+<section class="book-list">
+  {{#each books as |book|}}
+  {{> book-info book}}
+  {{/each}}
 </section>
 
-<section>
-  <div>
-    <p>
-      Add your favorite books here: 
-    </p>
-  </div>
-</section>
-
-<section>
-  <div>
-    <p>
-    Access your account information here:
-    </p>
-  </div>
-</section>
-
-<section>
-  <div>
-    <p>
-      If you don't have an account, please sign-in here.
-      </br>
-      If you do have an account, please log-in here.
-    </p>
-  </div>
-</section>
-
-<section>
-  <div>
-<p>
-  If you have any comments, concerns or questions, please contact us using these methods:
-</p>
-<address>
-  P: (555.692.7279)<br />
-  E: <a href="mailto:info@mybrary.io">info@mybrary.io</a>
-</address>
-  </div>
-</section>
