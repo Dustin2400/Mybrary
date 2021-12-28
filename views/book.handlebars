@@ -1,7 +1,35 @@
-<script id="entry-template" type="text/x-handlebars-template">
-  <div class="entry">
-    <h1>{{{category}}} Search Here</h1>
-   <div>
-    </div>
+<div class="single-book">
+  <div class="book-header">
+    <h2>
+      {{book.title}}
+    </h2>
+    <p>
+      by {{book.author}}
+    </p>
   </div>
-</script>
+  <div class="single-book-body">
+    <p>
+    Genre: {{book.category.name}}
+    </p>
+    <p>
+      {{#if book.checked_out}}
+      Sorry, this book is not available.
+      {{else}}
+      Good news! this book is available!<br>
+      <button id="book-check-out">Check out</button>
+      {{/if}}
+    </p>
+  </div>
+</div>
+
+<div class="reviews">
+  {{#if book.reviews}}
+<h3>
+  Reviews
+</h3>
+{{#each book.reviews as |review|}}
+{{> review-info review}}
+{{/each}}
+{{/if}}
+<a href="" id="add-a-review">Add a review</a>
+</div>
