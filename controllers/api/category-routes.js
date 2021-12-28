@@ -46,23 +46,24 @@ router.post('/', (req, res) => {
 });
 
 //PUT - update a category by its id
-router.put('/:id', (req, res) => {
-    Category.update(req.body, {
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(categoryData => {res.json(categoryData)});
-});
+
+// router.put('/:id', withAuth, (req, res) => {
+//     Category.update(req.body, {
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//     .then(categoryData => {res.json(categoryData)});
+// });
 
 //DELETE - delete a category 
-router.delete('/:id', (req, res) => {
-    Category.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(categoryData => {res.json(categoryData)});
-});
+// router.delete('/:id', withAuth, (req, res) => {
+//     Category.destroy({
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//     .then(categoryData => {res.json(categoryData)});
+// });
 
 module.exports = router;
