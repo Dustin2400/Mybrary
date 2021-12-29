@@ -23,7 +23,7 @@
   </div>
   <div class="single-book-body">
     <p>
-    Genre: {{book.category.name}}
+      Genre: {{book.category.name}}
     </p>
     <p>
       {{#if book.checked_out}}
@@ -34,6 +34,16 @@
       {{/if}}
     </p>
   </div>
+</div>
+
+<div class="vote">
+  <h3>
+    Votes
+  </h3>
+  {{#each book.vote as |vote|}}
+  Votes: {{userVotes}}
+  {{#/each}}
+  <a href="" id="vote-btn">Vote for a book</a>
 </div>
 
 <div class="reviews">
