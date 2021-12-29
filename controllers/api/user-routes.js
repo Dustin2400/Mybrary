@@ -65,7 +65,7 @@ router.post('/', (req, res) => {
     });
 });
 
-//User login 
+//User login - vertifies the username
 router.post('/login', (req, res) => {
     User.findOne({
         where: {
@@ -85,13 +85,6 @@ router.post('/login', (req, res) => {
             res.json({ user: dbUserData, message: 'You are logged in!'});
         });
     });
-
-        const validPassword = dbUserData.checkPassword(req.body.password);
-
-        if(!validPassword) {
-            res.status(400).json({ message: 'Wrong password!' });
-            return;
-        }
 });
 
 //User logout
@@ -105,8 +98,5 @@ router.post('/logout', (req, res) => {
         res.status(204).end();
     }
 });
-
-//focus on whether to allow the user to delete their own account
-//although requirements need crud methods...
 
 module.exports = router; 
