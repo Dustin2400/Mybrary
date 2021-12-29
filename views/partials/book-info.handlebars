@@ -1,0 +1,18 @@
+<div class="book-card">
+    <div class="title">
+        <a href="/book/{{id}}" class="book-title">
+        {{title}}
+        </a>
+    </div>
+    <div class="book-body">
+        <p>by {{author}}</p>
+        <p>Genre: {{category.name}}</p>
+        <p>
+        {{#if checked_out}}
+        unavailable
+        {{else}}
+        available
+        {{/if}}
+        </p>
+    </div>
+</div>

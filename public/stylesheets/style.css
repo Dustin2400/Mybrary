@@ -1,0 +1,132 @@
+html {
+    background-image: linear-gradient(160deg, #0cf574, #15e6cd, #0bc9cd, #587261);
+    font-family:  'book antiqua', serif;
+}
+header {
+    background-color: #2f97c1;
+    display: flex;
+    border: solid 4px #001242;
+    border-radius: 5px;
+    color: #001242;
+    flex-direction: column;
+}
+body {
+    padding: 10px;
+}
+nav {
+    float: right;
+    display: flex;
+    font-size: 20px;
+}
+h1 {
+    margin: 0px 30px 30px;
+}
+.main-title a{
+    margin: 0 62px;
+    font-size: 90px;
+    font-family: 'brush script mt', 'book antiqua', serif;
+    background-color: transparent;
+    color: #001242;
+}
+ul {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    color: #2f97c1;
+}
+li {
+    height: 50px;
+}
+a, button {
+    color: #15e6cd;
+    text-decoration: none;
+    margin: 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #001242;
+    color: #0cf574;
+}
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 30px;
+}
+.book-card {
+    width: 30%;
+    text-align: center;
+    border: 5px solid #001242;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #2f97c1;
+    color: #001242;
+}
+.title {
+    width: 100%;
+    background-color: #001242;
+    padding: 20px 0;
+    font-size: 23px;
+}
+.book-title {
+    background-color: transparent;
+}
+.book-body {
+    font-size: 20px;
+    margin: 20px;
+}
+.book-body p {
+    margin: 8px;
+}
+.single-book {
+    text-align: center;
+    width: 60%;
+    margin: 70px auto;
+    border:#001242 solid 8px;
+    border-radius: 20px;
+    background-color: #2f97c1;
+}
+.book-header {
+    background-color: #001242;
+    color:#0cf574;
+    font-size: 40px;
+    padding: 20px
+}
+h2 {
+    font-size: 100px;
+    font-family: 'brush script mt', 'book antiqua', serif;
+    margin: 0;
+    padding: 40px;
+}
+.single-book-body {
+    color: #001242;
+    font-size: 35px;
+    margin: 10px;
+}
+button {
+    font-size: 25px;
+    padding: 10px;
+    margin: 20px;
+}
+.single-book-body p {
+    margin-bottom: 0;
+}
+.reviews {
+    margin: auto;
+    width: 50%;
+    color:#001242;
+}
+h3 {
+    font-size: 35px;
+}
+.review {
+    margin: 20px;
+    padding: 20px;
+    border:#001242 solid 4px;
+    border-radius: 8px;
+    font-size: 20px;
+    background-color:#2f97c1;
+}
+.reviews a {
+    font-size: 20px;
+}
