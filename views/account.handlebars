@@ -1,8 +1,10 @@
-<h1>{{{username}}}'s Account Information</h1>
+<h1>{{ user.username }}'s Account Information</h1>
 <div>
-  <h2>{{{username}}}'s Reviews</h2>
+  <h2>{{ user.username }}'s Reviews</h2>
+  {{>review-info review}}
   {{!-- link to edit review --}}
 </div>
 <div>
-  <p>{{{username}}}'s Search History</p>
+  <h2>{{ user.username }}'s Search History</h2>
+  {{>book-info book}}
 </div>

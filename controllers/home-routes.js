@@ -100,6 +100,14 @@ router.get('/addreview',  (req, res) => {
     res.render('addreview');
 });
 
+router.get('/editreview',  (req, res) => {
+    res.render('editreview');
+});
+
+router.get('/addbook', (req, res) => {
+    res.render('addbook');
+});
+
 router.get('/account', (req, res) => {
     res.render('account');
 });
