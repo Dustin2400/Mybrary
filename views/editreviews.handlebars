@@ -4,11 +4,19 @@
 <article class="new-page">
 <section class="edit-form-page">
     <div class="form-heading">
-        
+        <h2>Edit Review</h2>
     </div>
 
-
-
+    <div class="form-section">
+        <form class="edit-review">
+            <div class="review-content">
+                <label for="review-content">Review</label>
+                <textarea class="entry-field" id="review-content" name="review-content">{{review.content}}</textarea>
+            </div>
+            <button type="submit">Edit Review</button>
+            <button type="button" class="delete-review-btn">Delete Review</button>
+        </form>
+    </div>
 </section>
 </article>
 

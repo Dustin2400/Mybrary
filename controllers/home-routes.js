@@ -88,8 +88,24 @@ router.get('/book/:id', (req, res) => {
     });
 })
 
-router.get('/signup', (req, res) =>{
+router.get('/wishlist', (req, res) => {
+    res.render('wishlist');
+});
+
+router.get('/account', (req, res) => {
+    res.render('account');
+});
+
+router.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+router.get('/signup', (req, res) => {
     res.render('signup');
+});
+
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 
