@@ -87,5 +87,25 @@ router.get('/book/:id', (req, res) => {
         res.status(500).json(err);
     });
 })
+
+router.get('/wishlist', (req, res) => {
+    res.render('wishlist');
+});
+
+router.get('/account', (req, res) => {
+    res.render('account');
+});
+
+router.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+router.get('/login', (req, res) => {
+    res.render('login');
+});
 //check whether to add a dashboard routes - check with group
 module.exports = router;
