@@ -1,13 +1,30 @@
+{{!-- <a href="/account" class="go-back"> &larr; Back to Account</a> --}}
+
+ {{!-- not sure what function this one does - should i comment it out? --}}
 <div class="reviews">
-  {{!-- {{#if book.reviews}}
+  {{#if book.reviews}} 
   <h3>
     Reviews
   </h3>
   {{#each book.reviews as |review|}}
   {{> review-info review}}
   {{/each}}
-  {{/if}} --}}
+  {{/if}} 
+</div> 
 
-  {{!-- fill out review format --}}
-  <a href="" id="add-a-review">Add a review</a>
-</div>
+<article class="new-page">
+    <section class="new-form-page">
+        <div class="form-heading">
+            <h2>Add A Review</h2>
+        </div>
+        <div class="form-section">
+          <form class="add-review">
+            <div class="review-content">
+              <label for="review-content">Review</label>
+              <textarea class="entry-field" id="review-content" name="review-content"></textarea>
+            </div>
+            <button type="submit" class="btn">Add Review</button>
+          </form>
+        </div>
+
+<script src="/javascript/add-review.js"></script>

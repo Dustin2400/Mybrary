@@ -87,9 +87,17 @@ router.get('/book/:id', (req, res) => {
         res.status(500).json(err);
     });
 })
+// search functionality not made at this time - mickey
+router.get('/search', (req, res) => {
+    res.render('search');
+});
 
 router.get('/wishlist', (req, res) => {
     res.render('wishlist');
+});
+
+router.get('/addreview',  (req, res) => {
+    res.render('addreview');
 });
 
 router.get('/account', (req, res) => {
@@ -108,7 +116,4 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-
-
-//check whether to add a dashboard routes - check with group
 module.exports = router;
