@@ -87,5 +87,12 @@ router.get('/book/:id', (req, res) => {
         res.status(500).json(err);
     });
 })
+
+router.get('/signup', (req, res) =>{
+    res.render('signup');
+});
+
+
+
 //check whether to add a dashboard routes - check with group
 module.exports = router;
