@@ -4,9 +4,23 @@
     <h2>
       {{book.title}}
     </h2>
+    {{!-- proposed if we are allowing users to add books --}}
+    {{!-- <div class="form-section"> --}}
+    {{!-- <form class = "add-new-book"> --}}
+      {{!-- <div class="add-book-section">
+                    <label for="book-title">Title</label>
+                    <input type="text" id="book-title" name="book-title" />
+      </div> --}}
     <p>
       by {{book.author}}
     </p>
+    {{!-- <div class="add-book-author">
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" name="book-author" />
+                </div>
+                <button type="submit" class="btn">Add Book</button> --}}
+    {{!-- </form> --}}
+    {{!-- </div> --}}
   </div>
   <div class="single-book-body">
     <p>
@@ -17,7 +31,7 @@
       Sorry, this book is not available.
       {{else}}
       Good news! this book is available!<br>
-      <button id="book-check-out">Check out</button>
+      <button id="book-check-out">Check Out</button>
       {{/if}}
     </p>
   </div>
@@ -30,8 +44,9 @@
 </h3>
 {{#each book.reviews as |review|}}
 {{> review-info review}}
+{{!-- shouldn't it be >review-content? as seen in add-review --}}
 {{/each}}
 {{/if}}
-<a href="" id="add-a-review">Add a review</a>
+<a href="" id="add-a-review">Add A Review</a>
 </div>
 
