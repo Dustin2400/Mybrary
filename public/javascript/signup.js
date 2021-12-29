@@ -13,7 +13,7 @@ async function signupFormHandler(event) {
             }),
             headers: {'Content-Type': 'application/json'}
         });
-//
+
         if(response.ok){
             console.log('Success');
         } else {
