@@ -1,7 +1,18 @@
-<div class="entry">
-    <h1>{{username}}'s Wishlist</h1>
-  <div>
-    <h2>Click on a book to check it out.</h2>
+
+  <div class="entry">
+    <div class="wishlist-intro">
+      <h1>{{{user.username}}}'s Wishlist</h1>
+      <h3>Click on a book to check it out.</h3>
+    </div>
+    <div class="wishlist">
+      {{#each user.wishes as |wish|}}
+      <div class="wish">
+      {{> book-info wish.book}}
+      
+      </div>
+      
+      {{/each}}
+
     </div>
     {{!-- figure out functionality for favoriting/voting favorite books --}}
 <div class="single-book">

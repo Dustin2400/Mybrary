@@ -116,6 +116,12 @@ button {
     width: 50%;
     color:#001242;
 }
+.vote {
+    margin: auto;
+    width: 50%;
+    color:#001242;
+}
+
 h3 {
     font-size: 35px;
 }
@@ -129,4 +135,53 @@ h3 {
 }
 .reviews a {
     font-size: 20px;
+}
+.wishlist {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+}
+.wish {
+    width: 40%;
+}
+.wish .book-card {
+    width: 100%
+}
+.wishlist-intro {
+    width: 75%;
+    margin: auto;
+}
+.sign-up-page, .login-page{
+    text-align: center;
+    width: 50%;
+    margin: 70px auto;
+    border:#001242 solid 8px;
+    border-radius: 20px;
+    background-color: #2f97c1;
+    height: 350px;
+}
+.form-heading {
+    width: 100%;
+    background-color: #001242;
+    padding: 20px 0;
+    font-size: 23px;
+}
+.form-heading h1 {
+    margin: 10px;
+    color: #0cf574;
+}
+.signup-form div {
+    margin: 10px;
+    color: #001242;
+    font-size: 18px;
+}
+.login-form div {
+    margin: 10px;
+    color: #001242;
+    font-size: 18px;
+}
+.login-link {
+    padding: 10px;
 }

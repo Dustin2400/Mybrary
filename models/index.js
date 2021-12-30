@@ -3,7 +3,8 @@ const Book = require('./Book');
 const Category = require('./Category');
 const Review = require('./Review');
 const User = require('./User');
-const Vote = require('./Vote')
+const Vote = require('./Vote');
+const Wish = require('./Wish');
 
 // define relationships
 Book.belongsTo(Category, {
@@ -66,5 +67,33 @@ Book.hasMany(Vote, {
     foreignKey: 'book_id'
 });
 
+Book.belongsToMany(User, {
+    through: Wish,
+    as: 'wishlist_books',
+    foreignKey: 'book_id'
+});
+
+User.belongsToMany(Book, {
+    through: Wish,
+    as: 'wishlist_books',
+    foreignKay: 'user_id'
+});
+
+Wish.belongsTo(User, {
+    foreignKey: 'user_id',
+});
+
+Wish.belongsTo(Book, {
+    foreignKey: 'book_id'
+});
+
+User.hasMany(Wish, {
+    foreignKey: 'user_id'
+});
+
+Book.hasMany(Wish, {
+    foreignKey: 'book_id'
+});
+
 // export models with associations
-module.exports = { Book, Category, Review, User, Vote }
+module.exports = { Book, Category, Review, User, Vote, Wish }

@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Book, Category, Review, User } = require('../models');
+const { Book, Category, Review, User, Vote, Wish } = require('../models');
+const withAuth = require('../utils/auth');
 
 //obtain all books for user to see on homepage
 router.get('/', (req, res) => {
-   Book.findAll({
+    Book.findAll({
         attributes: [
             'id',
             'title',
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
             // 'return_date',
             'category_id',
             'user_id',
-            // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE ')] - sequelize confuses me tbh 
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE book.id = vote.book_id)'), 'vote_count']
         ],
         include: [
             {
@@ -36,7 +37,6 @@ router.get('/', (req, res) => {
     })
     .then(dbPostData => {
         const books = dbPostData.map(post => post.get({ plain: true }));
-        console.log(books)
         res.render('homepage', {
             books,
             loggedIn: req.session.loggedIn
@@ -53,6 +53,16 @@ router.get('/book/:id', (req, res) => {
         where: {
             id: req.params.id
         },
+        attributes: [
+            'id',
+            'title',
+            'author',
+            'checked_out',
+            // 'return_date',
+            'category_id',
+            'user_id',
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE book.id = vote.book_id)'), 'vote_count']
+        ],
         include: [
             {
                 model: Category,
@@ -67,6 +77,10 @@ router.get('/book/:id', (req, res) => {
                     attributes: ['username']
                     }
                 ]
+            },
+            {
+                model: Wish,
+                attributes: ['user_id', 'book_id']
             }
         ]
     })
@@ -76,10 +90,18 @@ router.get('/book/:id', (req, res) => {
             return;
         }
         const book = dbBookData.get({ plain: true});
-        console.log(book);
+        console.log(book.wishes);
+        let onWishlist = false
+        for (i=0; i<book.wishes.length; i++) {
+            if (book.wishes[i].user_id === req.session.user_id) {
+                onWishlist = true;
+            }
+        }
+        console.log(onWishlist)
         res.render('book', {
             book,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            onWishlist
         })
     })
     .catch(err => {
@@ -87,14 +109,11 @@ router.get('/book/:id', (req, res) => {
         res.status(500).json(err);
     });
 })
+
 // search functionality not made at this time - mickey
 // router.get('/search', (req, res) => {
 //     res.render('search');
 // });
-
-router.get('/wishlist', (req, res) => {
-    res.render('wishlist');
-});
 
 router.get('/addreview/:id',  (req, res) => {
     Book.findOne({
@@ -115,10 +134,51 @@ router.get('/addreview/:id',  (req, res) => {
             book,
             loggedIn: req.session.loggedIn
         })
+
+
+router.get('/wishlist', withAuth, (req, res) => {
+    console.log(req.session)
+    User.findOne({
+        where: {
+            id: req.session.user_id
+        },
+        include: [
+            { 
+                model: Wish,
+                attributes: ['id', 'book_id'],
+                include: [
+                    {
+                        model: Book,
+                        attributes: [
+                            'id',
+                            'title',
+                            'author',
+                            'checked_out',
+                            // 'return_date',
+                            'category_id',
+                            'user_id',
+                            // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE book.id = vote.book_id)'), 'vote_count']
+                        ]
+                    }
+                ]
+            }
+        ]
+    })
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'No user found with this id' });
+            return;
+        }
+        const user = dbUserData.get({ plain: true });
+        console.log(user);
+        res.render('wishlist', {
+            user
+        });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
+
     });
 });
 
@@ -163,6 +223,7 @@ router.get('/account', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+    })
 });
 
 router.get('/contact', (req, res) => {
