@@ -26,7 +26,11 @@
         <a href="/account">Account</a>
         <a href="/contact">Contact</a>
         <a href="/signup">Sign Up</a>
+        {{#if loggedIn}}
+        <button id = "logout" class="btn-no-style">Logout</button>
+        {{else}}
         <a href="/login">Login</a>
+        {{/if}}
       </ul>
     </nav>
   </header>
@@ -34,6 +38,11 @@
   <main>
     {{{body}}}
   </main>
+
+
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
 
 </body>
 

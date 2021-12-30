@@ -110,6 +110,19 @@ router.get('/addbook', (req, res) => {
 
 router.get('/account', (req, res) => {
     res.render('account');
+    // include: [
+    //     {
+    //         model: Review,
+    //         attributes: ['id', 'content', 'User_id', 'Book_id'],
+    //         include: {
+    //             model: User,
+    //             attributes: ['username']
+    //         }
+    //     },
+    //     {
+    //         model: User,
+    //         attributes: ['username']
+    //     }
 });
 
 router.get('/contact', (req, res) => {
