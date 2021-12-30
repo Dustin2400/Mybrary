@@ -1,8 +1,25 @@
-<div class="log-in">
-  <p>
-    Please enter your username.
-  </p>
-  <p>
-    Please enter your password.
-  </p>
+<section class = "login-page">
+  <div class="form-heading">
+    <h1>Login to MyBrary</h1>
+  </div>
+
+<div class="form-section">
+  <form class="login-form">
+    <div>
+      <label for="username-login">Username</label>
+      <input type="text" class="entry-field" id="username-login" />
+    </div>
+    <div>
+      <label for="password-login">Password</label>
+      <input type="password" class="entry-field" id="password-login" />
+    </div>
+    <div>
+      <button type="submit" class="login-btn">Login to MyBrary</button>
+    </div>
+  </form>
 </div>
+
+<a href="/signup" class="signin-link">Sign Up Here</a>
+</section>
+
+<script src="/javascript/login.js"></script>
