@@ -1,10 +1,12 @@
-async function voteClickHandler(event) {
+buttonEl = document.querySelector('#remove-from-wishlist')
+
+async function removeFromWishlist(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-
-    const response = await fetch('/api/books/vote', {
-        method: 'PUT',
+    console.log(id);
+    const response = await fetch('/api/books/wishlistRemove', {
+        method: 'DELETE',
         body: JSON.stringify({
             book_id: id
         }),
@@ -20,4 +22,4 @@ async function voteClickHandler(event) {
     }
 }
 
-document.querySelector('#vote-btn').addEventListener('click', voteClickHandler);
+buttonEl.addEventListener('click', removeFromWishlist);

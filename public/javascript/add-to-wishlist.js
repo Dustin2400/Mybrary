@@ -1,9 +1,9 @@
-async function voteClickHandler(event) {
+async function addToWishlist(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
-    const response = await fetch('/api/books/vote', {
+    const response = await fetch('/api/books/wishlist', {
         method: 'PUT',
         body: JSON.stringify({
             book_id: id
@@ -20,4 +20,4 @@ async function voteClickHandler(event) {
     }
 }
 
-document.querySelector('#vote-btn').addEventListener('click', voteClickHandler);
+document.querySelector('#add-to-wishlist').addEventListener('click', addToWishlist);

@@ -116,6 +116,12 @@ button {
     width: 50%;
     color:#001242;
 }
+.vote {
+    margin: auto;
+    width: 50%;
+    color:#001242;
+}
+
 h3 {
     font-size: 35px;
 }
@@ -129,4 +135,17 @@ h3 {
 }
 .reviews a {
     font-size: 20px;
+}
+.wishlist {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+}
+.wish {
+    width: 40%;
+}
+.wish .book-card {
+    width: 100%
 }

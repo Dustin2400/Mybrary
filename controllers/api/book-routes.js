@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection'); //for Vote object if implemented
 const withAuth = require('../../utils/auth');
-const { Book, Category, Review, User } = require('../../models');
+const { Book, Category, Review, User, Vote, Wish } = require('../../models');
 
 //GET all books 
 router.get('/', (req, res) => {
@@ -87,18 +87,50 @@ router.post('/', (req, res) => {
 });
 
 //Make a VOTE model
-// //PUT - vote addon for each book as voted by users 
-// router.put('/vote', withAuth, (req, res) => {
-//     if(req.session){
-//         Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
-//         .then(votedData => res.json(votedData))
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-//     }
-// });
+//PUT - vote addon for each book as voted by users 
+router.put('/vote', withAuth, (req, res) => {
+    if(req.session){
+        Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
+        .then(votedData => res.json(votedData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
+});
 
+router.put('/wishlist', (req, res) => {
+    if(req.session){
+        Book.wishlist({...req.body, user_id: 1}, {Wish, Book, User})
+        .then(wishlistData => res.json(wishlistData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+    }
+});
+
+router.delete('/wishlistRemove', (req, res) => {
+    if(req.session){
+        Wish.destroy({
+            where: {
+                book_id: req.body.book_id,
+                user_id: req.session.id
+            }
+        })
+        .then(dbBookData =>{
+            if(!dbBookData) {
+                res.status(400).json({ message: 'No book found.'});
+                return;
+            }
+            res.json(dbBookData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+    }
+})
 //PUT - update book based on id and other attributes when needed - test out 
 
 // router.put('/:id', withAuth, (req, res) => {
