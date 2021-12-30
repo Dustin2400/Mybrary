@@ -32,18 +32,17 @@
       Good news! this book is available!<br>
       <button id="book-check-out">Check Out</button>
       {{/if}}
+      <button id="add-to-wishlist">Add to wishlist</button>
     </p>
   </div>
 </div>
 
 <div class="vote">
   <h3>
-    Votes
+    Votes: {{book.vote_count}}
   </h3>
-  {{#each book.vote as |vote|}}
-  Votes: {{userVotes}}
-  {{/each}}
-  <a href="" id="vote-btn">Vote for a book</a>
+  
+  <button id="vote-btn">Vote for this book</button>
 </div>
 
 <div class="reviews">
@@ -60,3 +59,5 @@
 </div>
 
 <script src="/javascript/add-book.js"></script>
+<script src="/javascript/vote.js"></script>
+<script src="/javascript/add-to-wishlist.js"></script>

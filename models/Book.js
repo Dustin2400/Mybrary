@@ -2,7 +2,21 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class Book extends Model {}
+class Book extends Model {
+    static upvote(body, models) {
+        return models.Vote.create({
+            user_id: body.user_id,
+            book_id: body.book_id
+        });
+    }
+
+    static wishlist(body, models) {
+        return models.Wish.create({
+            user_id: body.user_id,
+            book_id: body.book_id
+        });
+    }
+}
 
 Book.init(
     {

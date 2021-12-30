@@ -5,6 +5,7 @@ const seedReviews = require('./review-seeds');
 const seedVotes = require('./vote-seeds');
 
 const sequelize = require('../config/connection');
+const seedWishes = require('./Wish-seeds');
 
 const seedAll = async () => {
     await sequelize.sync({ force: true });
@@ -24,6 +25,9 @@ const seedAll = async () => {
 
     await seedVotes();
     console.log('Votes seeded');
+
+    await seedWishes();
+    console.log('Wishlists seeded');
 }
 
 seedAll();

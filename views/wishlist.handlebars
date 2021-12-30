@@ -1,10 +1,14 @@
 
-<script id="entry-template" type="text/x-handlebars-template">
+
   <div class="entry">
-    <h1>{{{username}}}'s Wishlist</h1>
-  <div>
-    <h2>Click on a book to check it out.</h2>
+    <h1>{{{user.username}}}'s Wishlist</h1>
+    <div>
+      <h3>Click on a book to check it out.</h3>
+    </div>
+    <div class="wishlist">
+      {{#each user.wishes as |wish|}}
+      {{> book-info wish.book}}
+      {{/each}}
     </div>
     {{!-- figured out functionality for favoriting/voting favorite books --}}
   </div>
-</script>
