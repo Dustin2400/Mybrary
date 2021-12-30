@@ -143,6 +143,9 @@ h3 {
     margin: auto;
     justify-content: space-around;
 }
-.wishlist .book-card {
+.wish {
     width: 40%;
+}
+.wish .book-card {
+    width: 100%
 }

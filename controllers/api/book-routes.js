@@ -108,6 +108,28 @@ router.put('/wishlist', (req, res) => {
             res.status(500).json(err);
         })
     }
+});
+
+router.delete('/wishlistRemove', (req, res) => {
+    if(req.session){
+        Wish.destroy({
+            where: {
+                book_id: req.body.book_id,
+                user_id: req.session.id
+            }
+        })
+        .then(dbBookData =>{
+            if(!dbBookData) {
+                res.status(400).json({ message: 'No book found.'});
+                return;
+            }
+            res.json(dbBookData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+    }
 })
 //PUT - update book based on id and other attributes when needed - test out 
 

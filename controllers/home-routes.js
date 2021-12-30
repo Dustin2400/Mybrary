@@ -36,7 +36,6 @@ router.get('/', (req, res) => {
     })
     .then(dbPostData => {
         const books = dbPostData.map(post => post.get({ plain: true }));
-        console.log(books)
         res.render('homepage', {
             books,
             loggedIn: req.session.loggedIn
@@ -77,6 +76,10 @@ router.get('/book/:id', (req, res) => {
                     attributes: ['username']
                     }
                 ]
+            },
+            {
+                model: Wish,
+                attributes: ['user_id', 'book_id']
             }
         ]
     })
@@ -86,10 +89,18 @@ router.get('/book/:id', (req, res) => {
             return;
         }
         const book = dbBookData.get({ plain: true});
-        console.log(book);
+        console.log(book.wishes);
+        let onWishlist = false
+        for (i=0; i<book.wishes.length; i++) {
+            if (book.wishes[i].user_id === req.session.id) {
+                onWishlist = true;
+            }
+        }
+        console.log(onWishlist)
         res.render('book', {
             book,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            onWishlist
         })
     })
     .catch(err => {
@@ -101,7 +112,7 @@ router.get('/book/:id', (req, res) => {
 router.get('/wishlist', (req, res) => {
     User.findOne({
         where: {
-            id: 1
+            id: req.session.id
         },
         include: [
             { 

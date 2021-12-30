@@ -27,12 +27,16 @@
     </p>
     <p>
       {{#if book.checked_out}}
-      Sorry, this book is not available.
+      Sorry, this book is not available.<br>
       {{else}}
       Good news! this book is available!<br>
       <button id="book-check-out">Check Out</button>
       {{/if}}
+      {{#if onWishlist}}
+      <button id="remove-from-wishlist" data-id={{wish.book.id}}>Remove from wishlist</button>
+      {{else}}
       <button id="add-to-wishlist">Add to wishlist</button>
+      {{/if}}
     </p>
   </div>
 </div>
@@ -57,7 +61,8 @@
 {{/if}}
 <a href="" id="add-a-review">Add A Review</a>
 </div>
-
+<button id="remove-from-wishlist" data-id={{wish.book.id}}>Remove from wishlist</button>
+<script src="/javascript/remove-from-wishlist.js"></script>
 <script src="/javascript/add-book.js"></script>
 <script src="/javascript/vote.js"></script>
 <script src="/javascript/add-to-wishlist.js"></script>

@@ -7,7 +7,9 @@
     <div class="book-body">
         <p>by {{author}}</p>
         <p>Genre: {{category.name}}</p>
+        {{#if vote_count}}
         <p>Votes: {{vote_count}}</p>
+        {{/if}}
         <p>
         {{#if checked_out}}
         unavailable

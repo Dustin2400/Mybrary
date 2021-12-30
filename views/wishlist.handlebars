@@ -7,8 +7,14 @@
     </div>
     <div class="wishlist">
       {{#each user.wishes as |wish|}}
+      <div class="wish">
       {{> book-info wish.book}}
+      
+      </div>
+      
       {{/each}}
     </div>
     {{!-- figured out functionality for favoriting/voting favorite books --}}
   </div>
+  
+  
