@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
 });
 
 //POST a review
-router.post('/', (req, res) => 
+router.post('/', withAuth, (req, res) => 
     {
         Review.create({
             content: req.body.content,
@@ -48,7 +48,7 @@ router.post('/', (req, res) =>
 });
 
 //DESTROY delete a review
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Review.destroy({
         where: {
             id: req.params.id

@@ -99,9 +99,9 @@ router.put('/vote', withAuth, (req, res) => {
     }
 });
 
-router.put('/wishlist', (req, res) => {
+router.put('/wishlist', withAuth, (req, res) => {
     if(req.session){
-        Book.wishlist({...req.body, user_id: 1}, {Wish, Book, User})
+        Book.wishlist({...req.body, user_id: req.session.user_id}, {Wish, Book, User})
         .then(wishlistData => res.json(wishlistData))
         .catch(err => {
             console.log(err);
@@ -110,12 +110,12 @@ router.put('/wishlist', (req, res) => {
     }
 });
 
-router.delete('/wishlistRemove', (req, res) => {
+router.delete('/wishlistRemove', withAuth, (req, res) => {
     if(req.session){
         Wish.destroy({
             where: {
                 book_id: req.body.book_id,
-                user_id: req.session.id
+                user_id: req.session.user_id
             }
         })
         .then(dbBookData =>{

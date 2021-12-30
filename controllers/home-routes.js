@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Book, Category, Review, User, Vote, Wish } = require('../models');
+const withAuth = require('../utils/auth');
 
 //obtain all books for user to see on homepage
 router.get('/', (req, res) => {
-   Book.findAll({
+    Book.findAll({
         attributes: [
             'id',
             'title',
@@ -92,7 +93,7 @@ router.get('/book/:id', (req, res) => {
         console.log(book.wishes);
         let onWishlist = false
         for (i=0; i<book.wishes.length; i++) {
-            if (book.wishes[i].user_id === req.session.id) {
+            if (book.wishes[i].user_id === req.session.user_id) {
                 onWishlist = true;
             }
         }
@@ -109,10 +110,11 @@ router.get('/book/:id', (req, res) => {
     });
 })
 
-router.get('/wishlist', (req, res) => {
+router.get('/wishlist', withAuth, (req, res) => {
+    console.log(req.session)
     User.findOne({
         where: {
-            id: req.session.id
+            id: req.session.user_id
         },
         include: [
             { 
@@ -153,7 +155,7 @@ router.get('/wishlist', (req, res) => {
     })
 });
 
-router.get('/account', (req, res) => {
+router.get('/account', withAuth, (req, res) => {
     res.render('account');
 });
 
