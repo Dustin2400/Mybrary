@@ -96,8 +96,30 @@ router.get('/wishlist', (req, res) => {
     res.render('wishlist');
 });
 
-router.get('/addreview',  (req, res) => {
-    res.render('addreview');
+router.get('/addreview/:id',  (req, res) => {
+    Book.findOne({
+        where: {
+           id: req.params.id
+        },
+        attributes: ['id'],
+    })
+
+    .then(dbBookData => {
+        if (!dbBookData) {
+            res.status(404).json({ message: 'No book found with this id'});
+            return;
+        }
+        const book = dbBookData.get({ plain: true});
+        console.log(book);
+        res.render('addreview', {
+            book,
+            loggedIn: req.session.loggedIn
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 router.get('/editreview',  (req, res) => {
