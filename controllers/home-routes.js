@@ -88,9 +88,9 @@ router.get('/book/:id', (req, res) => {
     });
 })
 // search functionality not made at this time - mickey
-router.get('/search', (req, res) => {
-    res.render('search');
-});
+// router.get('/search', (req, res) => {
+//     res.render('search');
+// });
 
 router.get('/wishlist', (req, res) => {
     res.render('wishlist');
@@ -131,20 +131,38 @@ router.get('/addbook', (req, res) => {
 });
 
 router.get('/account', (req, res) => {
-    res.render('account');
-    // include: [
-    //     {
-    //         model: Review,
-    //         attributes: ['id', 'content', 'User_id', 'Book_id'],
-    //         include: {
-    //             model: User,
-    //             attributes: ['username']
-    //         }
-    //     },
-    //     {
-    //         model: User,
-    //         attributes: ['username']
-    //     }
+    console.log(req.session.id);
+    User.findOne({
+        where: {
+            id: req.session.id
+        },
+        include: [ {
+            model: Book,
+            attributes: ['id', 'title', 'author', 'checked_out'],
+        },
+        {
+            model: Review,
+            attributes: ['id', 'content'],
+        }
+    ]
+    })
+    .then(dbBookData => {
+        if (!dbBookData) {
+            res.status(404).json({ message: 'No user found with this id'});
+            return;
+        }
+
+        const book = dbBookData.get({ plain: true});
+        console.log(book);
+        res.render('account', {
+            book,
+            loggedIn: req.session.loggedIn
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 router.get('/contact', (req, res) => {
