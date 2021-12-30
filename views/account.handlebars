@@ -2,11 +2,19 @@
 <h1>{{ book.username }}'s Account Information</h1>
 <div>
   <h2>{{ book.username }}'s Reviews</h2>
-  {{>review-info}}
+  {{>review-info review}}
   {{!-- link to edit review --}}
 </div>
 <div>
-  <h2>{{ book.username }}'s Search History</h2>
-  {{>book-info book}}
+  <h2>{{ book.username }}'s Wishlist</h2>
+  <div class="wishlist">
+      {{#each user.wishes as |wish|}}
+      <div class="wish">
+      {{> book-info wish.book}}
+      
+      </div>
+      
+      {{/each}}
 
+    </div>
 </div>

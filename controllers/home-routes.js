@@ -91,7 +91,7 @@ router.get('/book/:id', (req, res) => {
         }
         const book = dbBookData.get({ plain: true});
         console.log(book.wishes);
-        let onWishlist = false
+        let onWishlist = false;
         for (i=0; i<book.wishes.length; i++) {
             if (book.wishes[i].user_id === req.session.user_id) {
                 onWishlist = true;
@@ -102,18 +102,19 @@ router.get('/book/:id', (req, res) => {
             book,
             loggedIn: req.session.loggedIn,
             onWishlist
-        })
+        });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
-})
+});
 
 // search functionality not made at this time - mickey
 // router.get('/search', (req, res) => {
 //     res.render('search');
 // });
+
 
 router.get('/addreview/:id',  (req, res) => {
     Book.findOne({
@@ -122,7 +123,6 @@ router.get('/addreview/:id',  (req, res) => {
         },
         attributes: ['id'],
     })
-
     .then(dbBookData => {
         if (!dbBookData) {
             res.status(404).json({ message: 'No book found with this id'});
@@ -133,11 +133,13 @@ router.get('/addreview/:id',  (req, res) => {
         res.render('addreview', {
             book,
             loggedIn: req.session.loggedIn
-        })
+        });
+    });
+});
 
 
 router.get('/wishlist', withAuth, (req, res) => {
-    console.log(req.session)
+    console.log(req.session);
     User.findOne({
         where: {
             id: req.session.user_id
@@ -223,7 +225,6 @@ router.get('/account', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-    })
 });
 
 router.get('/contact', (req, res) => {

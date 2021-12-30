@@ -35,11 +35,6 @@
   {{#each book.vote as |vote|}}
   Votes: {{userVotes}}
   {{/each}}
-  <a href="/account" id="vote-btn">Vote for a book</a>
-
-  
-  <button id="vote-btn">Vote for this book</button>
-
 </div>
 
 <div class="reviews">
@@ -51,6 +46,7 @@
 {{> review-info review}}
 {{/each}}
 {{/if}}
+<a href="/account" id="vote-a-book">Vote For This Book</a>
 <a href="/addreview/{{book.id}}" id="add-a-review">Add A Review</a>
 <a href="/addbook" id = "add-a-book">Add A Book</a>
 </div>
