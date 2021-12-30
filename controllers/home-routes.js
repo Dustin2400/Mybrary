@@ -110,6 +110,32 @@ router.get('/book/:id', (req, res) => {
     });
 })
 
+// search functionality not made at this time - mickey
+// router.get('/search', (req, res) => {
+//     res.render('search');
+// });
+
+router.get('/addreview/:id',  (req, res) => {
+    Book.findOne({
+        where: {
+           id: req.params.id
+        },
+        attributes: ['id'],
+    })
+
+    .then(dbBookData => {
+        if (!dbBookData) {
+            res.status(404).json({ message: 'No book found with this id'});
+            return;
+        }
+        const book = dbBookData.get({ plain: true});
+        console.log(book);
+        res.render('addreview', {
+            book,
+            loggedIn: req.session.loggedIn
+        })
+
+
 router.get('/wishlist', withAuth, (req, res) => {
     console.log(req.session)
     User.findOne({
@@ -152,11 +178,52 @@ router.get('/wishlist', withAuth, (req, res) => {
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    })
+
+    });
 });
 
-router.get('/account', withAuth, (req, res) => {
-    res.render('account');
+router.get('/editreview',  (req, res) => {
+    res.render('editreview');
+});
+
+router.get('/addbook', (req, res) => {
+    res.render('addbook');
+});
+
+router.get('/account', (req, res) => {
+    console.log(req.session.id);
+    User.findOne({
+        where: {
+            id: req.session.id
+        },
+        include: [ {
+            model: Book,
+            attributes: ['id', 'title', 'author', 'checked_out'],
+        },
+        {
+            model: Review,
+            attributes: ['id', 'content'],
+        }
+    ]
+    })
+    .then(dbBookData => {
+        if (!dbBookData) {
+            res.status(404).json({ message: 'No user found with this id'});
+            return;
+        }
+
+        const book = dbBookData.get({ plain: true});
+        console.log(book);
+        res.render('account', {
+            book,
+            loggedIn: req.session.loggedIn
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+    })
 });
 
 router.get('/contact', (req, res) => {
@@ -170,5 +237,5 @@ router.get('/signup', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login');
 });
-//check whether to add a dashboard routes - check with group
+
 module.exports = router;

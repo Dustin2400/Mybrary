@@ -16,7 +16,7 @@
       Sorry, this book is not available.<br>
       {{else}}
       Good news! this book is available!<br>
-      <button id="book-check-out">Check Out</button>
+      <button type="submit" class="check-out-book">Check Out</button>
       {{/if}}
       {{#if onWishlist}}
       <button id="remove-from-wishlist" data-id={{wish.book.id}}>Remove from wishlist</button>
@@ -31,8 +31,15 @@
   <h3>
     Votes: {{book.vote_count}}
   </h3>
+
+  {{#each book.vote as |vote|}}
+  Votes: {{userVotes}}
+  {{/each}}
+  <a href="/account" id="vote-btn">Vote for a book</a>
+
   
   <button id="vote-btn">Vote for this book</button>
+
 </div>
 
 <div class="reviews">
@@ -42,15 +49,16 @@
 </h3>
 {{#each book.reviews as |review|}}
 {{> review-info review}}
-{{!-- shouldn't it be >review-content? as seen in add-review --}}
 {{/each}}
 {{/if}}
-<a href="" id="add-a-review">Add A Review</a>
+<a href="/addreview/{{book.id}}" id="add-a-review">Add A Review</a>
+<a href="/addbook" id = "add-a-book">Add A Book</a>
 </div>
 
 
+<script src="/javascript/checkout-book.js"></script>
+<script src="/javascript/vote.js"></script>
 <script src="/javascript/remove-from-wishlist.js"></script>
 <script src="/javascript/add-book.js"></script>
 <script src="/javascript/vote.js"></script>
 <script src="/javascript/add-to-wishlist.js"></script>
-

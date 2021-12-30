@@ -38,14 +38,18 @@ router.post('/', withAuth, (req, res) =>
         Review.create({
             content: req.body.content,
             book_id: req.body.book_id,
-            user_id: req.body.user_id
+            user_id: req.session.user_id
         })
-        .then(dbReviewData => res.json(dbReviewData))
+        .then(dbReviewData => {
+            console.log(dbReviewData);
+            res.json(dbReviewData)})
         .catch(err => {
             console.log(err);
             res.status(400).json(err);
         });
 });
+
+//PUT edit a review
 
 //DESTROY delete a review
 router.delete('/:id', withAuth, (req, res) => {
