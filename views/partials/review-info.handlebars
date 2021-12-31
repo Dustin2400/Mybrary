@@ -1,4 +1,9 @@
 <div class="review">
     {{content}}<br>
+    {{#if user}}
     -{{user.username}}
+    {{/if}}
+    {{#if book}}
+    for {{book.title}}
+    {{/if}}
 </div>

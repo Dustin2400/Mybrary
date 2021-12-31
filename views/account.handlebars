@@ -1,11 +1,23 @@
 
 <h1>{{ book.username }}'s Account Information</h1>
-<div>
-  <h2>{{ book.username }}'s Reviews</h2>
+  <h3 class="intro">{{book.username}}'s Checked out books</h3>
+  <div class="checked-out">
+    {{#each book.books as |book|}}
+    <div class="wish">
+    {{> book-info book}}
+    </div>
+    {{/each}}
+  </div>
+  <h3 class="intro">{{ book.username }}'s Reviews</h3>
+  <div class="reviews">
+  {{#each book.reviews as |review|}}
   {{>review-info review}}
+  <a href="/editReview/{{review.id}}">Edit Review</a>
+  {{/each}}
+  </div>
   {{!-- link to edit review --}}
 </div>
-<div>
+{{!-- <div>
   <h2>{{ book.username }}'s Wishlist</h2>
   <div class="wishlist">
       {{#each user.wishes as |wish|}}
@@ -17,4 +29,4 @@
       {{/each}}
 
     </div>
-</div>
+</div> --}}

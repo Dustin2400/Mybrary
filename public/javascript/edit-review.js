@@ -1,10 +1,11 @@
 async function editFormHandler(event) {
     event.preventDefault();
 
-    const id = document.querySelector('input[name="review-id"]').value.trim(); 
+    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1]; 
     const content = document.querySelector('textarea[name="review-content"]').value.trim();
+    console.log(id, content);
 
-    const response = await fetch(`/api/reviews/${review_id}`, {
+    const response = await fetch(`/api/reviews/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             id,

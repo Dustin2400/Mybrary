@@ -50,6 +50,29 @@ router.post('/', withAuth, (req, res) =>
 });
 
 //PUT edit a review
+router.put('/:id', withAuth, (req, res) => {
+    Review.update(
+        {
+            content: req.body.content
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+    .then(dbReviewData => {
+        if(!dbReviewData) {
+            res.status(400).json({ message: 'No review found with this id'});
+            return;
+        }
+        res.json(dbReviewData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+});
 
 //DESTROY delete a review
 router.delete('/:id', withAuth, (req, res) => {
