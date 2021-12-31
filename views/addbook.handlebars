@@ -13,8 +13,15 @@
                     <input type="text" id="book-author" name="book-author" />
                 </div>
             <div class="add-book-category">
-                    <label for ="category-name">Category</label>
-                    {{!-- input type will be selection box --}}
+                <p>Choose a Category or make a new one.</p>
+                    <label for="category-name">Category</label>
+                    <select id="category-name" name"category-name">
+                        {{#each category as |category|}}
+                        <option id="{{category.id}}">{{category.name}}</option>
+                        {{/each}}
+                    </select>
+                    <label for="new-category">New Category</label>
+                    <input type="text" id="new-category" name="new-category" />
             </div>
              <button type="submit" class="btn">Add Book</button> 
      </div>

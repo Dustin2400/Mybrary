@@ -19,10 +19,10 @@ router.get('/', (req, res) => {
 });
 
 //GET category by its id 
-router.get('/:id', (req, res) => {
+router.get('/:name', (req, res) => {
     Category.findOne({
         where: {
-            id: req.params.id
+            name: req.params.name
         },
         include: [
             {
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
         ]
     })
     .then(categoryData => {
-        console.log('Route to find the book category by its id', categoryData);
+        // console.log('Route to find the book category by its id', categoryData);
         res.json(categoryData);
     });
 });
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Category.create(req.body)
     .then(categoryData => {
-        console.log('Router to create a category', categoryData);
+        // console.log('Router to create a category', categoryData);
         res.json(categoryData)
     });
 });

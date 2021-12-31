@@ -1,26 +1,27 @@
 {{!-- Account serves as dashboard for us or navbar functionality--}}
 {{!-- <a href="/account" class="go-back"> &larr; Back to Account</a> --}}
 
-<article class="new-page">
+
 <section class="edit-form-page">
     <div class="form-heading">
-        <h2>Edit Review</h2>
+        <h1>Edit Review</h1>
     </div>
 
     <div class="form-section">
         <form class="edit-review">
             <div class="review-content">
-                <label for="review-content">Review</label>
+                <label for="review-content">Review</label><br>
                 <textarea class="entry-field" id="review-content" name="review-content">{{review.content}}</textarea>
             </div>
+            <div>
             <button type="submit">Edit Review</button>
             <button type="button" class="delete-review-btn">Delete Review</button>
+            </div>
         </form>
     </div>
 </section>
-</article>
 
-{{#if loggedIn}}
+
+
 <script src="/javascript/edit-review.js"></script>
 <script src="/javascript/delete-review.js"></script>
-{{/if}}

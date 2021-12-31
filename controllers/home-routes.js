@@ -90,14 +90,12 @@ router.get('/book/:id', (req, res) => {
             return;
         }
         const book = dbBookData.get({ plain: true});
-        console.log(book.wishes);
         let onWishlist = false;
         for (i=0; i<book.wishes.length; i++) {
             if (book.wishes[i].user_id === req.session.user_id) {
                 onWishlist = true;
             }
         }
-        console.log(onWishlist)
         res.render('book', {
             book,
             loggedIn: req.session.loggedIn,
@@ -174,7 +172,8 @@ router.get('/wishlist', withAuth, (req, res) => {
         const user = dbUserData.get({ plain: true });
         console.log(user);
         res.render('wishlist', {
-            user
+            user,
+            loggedIn: req.session.loggedIn
         });
     })
     .catch(err => {
@@ -184,27 +183,79 @@ router.get('/wishlist', withAuth, (req, res) => {
     });
 });
 
-router.get('/editreview',  (req, res) => {
-    res.render('editreview');
+router.get('/editReview/:id', withAuth,  (req, res) => {
+    Review.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'content'
+        ],
+        include: [
+            {
+                model: Book,
+                attributes: ['title']
+            }
+        ]
+    })
+    .then(dbReviewData => {
+        if (!dbReviewData) {
+            res.status(404).json({ message: 'No review found with that id'});
+            return;
+        }
+        const review = dbReviewData.get({ plain: true });
+        res.render('edit-review', {
+            review,
+            loggedIn: req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
 });
 
 router.get('/addbook', (req, res) => {
-    res.render('addbook');
+    Category.findAll()
+    .then(dbCategoryData => {
+        const category = dbCategoryData.map(category => category.get({ plain: true }));
+        res.render('addbook', {
+            category,
+            loggedIn: req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
 });
 
 router.get('/account', (req, res) => {
     console.log(req.session.id);
     User.findOne({
         where: {
-            id: req.session.id
+            id: 1
+            
         },
         include: [ {
             model: Book,
             attributes: ['id', 'title', 'author', 'checked_out'],
+            include: [
+                {
+                    model: Category,
+                    attribtes: ['name']
+                }
+            ]
         },
         {
             model: Review,
             attributes: ['id', 'content'],
+            include: [
+                {
+                    model: Book,
+                    attributes: ['title']
+                }
+            ]
         }
     ]
     })
@@ -228,15 +279,21 @@ router.get('/account', (req, res) => {
 });
 
 router.get('/contact', (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        loggedIn: req.session.loggedIn
+    });
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('signup', {
+        loggedIn: req.session.loggedIn
+    });
 });
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', {
+        loggedIn: req.session.loggedIn
+    });
 });
 
 module.exports = router;
