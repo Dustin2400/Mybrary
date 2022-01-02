@@ -1,8 +1,9 @@
 async function newFormHandler(event) {
     event.preventDefault();
 
+    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
     //for book check-in 
-    const response = await fetch(`/api/books/${book_id}`, {
+    const response = await fetch(`/api/books/checkin/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             user_id: null,
@@ -29,4 +30,4 @@ async function newFormHandler(event) {
  
 }
 
-document.querySelector('.check-in-book').addEventListener('submit', newFormHandler);
+document.querySelector('.check-in-book').addEventListener('click', newFormHandler);

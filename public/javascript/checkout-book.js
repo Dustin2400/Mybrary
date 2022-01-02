@@ -1,8 +1,9 @@
 async function newFormHandler(event) {
     event.preventDefault();
 
+    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
     //for book check-out
-    const response = await fetch(`/api/books/${book_id}`, {
+    const response = await fetch(`/api/books/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             checked_out: true,
@@ -22,4 +23,4 @@ async function newFormHandler(event) {
     //userid can get pulled from session 
 }
 
-document.querySelector('.check-out-book').addEventListener('submit', newFormHandler);
+document.querySelector('.check-out-book').addEventListener('click', newFormHandler);

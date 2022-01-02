@@ -133,34 +133,57 @@ router.delete('/wishlistRemove', withAuth, (req, res) => {
 })
 //PUT - update book based on id and other attributes when needed - test out 
 
-// router.put('/:id', withAuth, (req, res) => {
-//     Book.update(
-//         {
-//             title: req.body.title,
-//             author: req.body.author,
-//             category_id: req.body.category_id,
-//             user_id: req.session.user_id
-//         },
-//         {
-//             where: {
-//                 id: req.params.id
-//             }
-//         }
-//     )
-//     .then(dbBookData => {
-//         if(!dbBookData) {
-//             res.status(400).json({ message: 'No book found.'});
-//             return;
-//         }
-//         res.json(dbBookData);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// });
+router.put('/:id', withAuth, (req, res) => {
+    Book.update(
+        {
+            checked_out: req.body.checked_out,
+            user_id: req.session.user_id
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+    .then(dbBookData => {
+        if(!dbBookData) {
+            res.status(400).json({ message: 'No book found.'});
+            return;
+        }
+        res.json(dbBookData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 
-//DELETE - DELETE a book by its respective id
+router.put('/checkin/:id', withAuth, (req, res) => {
+    Book.update(
+        {
+            checked_out: req.body.checked_out,
+            user_id: req.body.user_id
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+    .then(dbBookData => {
+        if(!dbBookData) {
+            res.status(400).json({ message: 'No book found.'});
+            return;
+        }
+        res.json(dbBookData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+// DELETE - DELETE a book by its respective id
 // router.delete('/:id', withAuth, (req, res) => {
 //     console.log('id', req.params.id);
 //     Book.destroy({
