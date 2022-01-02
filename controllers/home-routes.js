@@ -96,10 +96,15 @@ router.get('/book/:id', (req, res) => {
                 onWishlist = true;
             }
         }
+        let checkedOut = false;
+        if(book.user_id === req.session.user_id) {
+            checkedOut = true;
+        }
         res.render('book', {
             book,
             loggedIn: req.session.loggedIn,
-            onWishlist
+            onWishlist,
+            checkedOut
         });
     })
     .catch(err => {
@@ -137,7 +142,6 @@ router.get('/addreview/:id',  (req, res) => {
 
 
 router.get('/wishlist', withAuth, (req, res) => {
-    console.log(req.session);
     User.findOne({
         where: {
             id: req.session.user_id
@@ -230,11 +234,10 @@ router.get('/addbook', (req, res) => {
     })
 });
 
-router.get('/account', (req, res) => {
-    console.log(req.session.id);
+router.get('/account', withAuth, (req, res) => {
     User.findOne({
         where: {
-            id: 1
+            id: req.session.user_id
             
         },
         include: [ {

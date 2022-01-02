@@ -35,17 +35,20 @@ ul {
     margin: 0;
     color: #2f97c1;
 }
-li {
-    height: 50px;
-}
 a, button {
-    color: #15e6cd;
     text-decoration: none;
     margin: 15px;
     padding: 10px 15px;
     border-radius: 5px;
     background-color: #001242;
     color: #0cf574;
+}
+nav button {
+    margin: 15px;
+    padding: 10px 15px;
+    font-family:  'book antiqua', serif;
+    font-size: 20px;
+    border: none;
 }
 .book-list {
     display: flex;
@@ -153,7 +156,7 @@ h3 {
     width: 75%;
     margin: auto;
 }
-.sign-up-page, .login-page, .edit-form-page {
+.sign-up-page, .login-page, .edit-form-page, .form-section {
     text-align: center;
     width: 50%;
     margin: 70px auto;
@@ -178,6 +181,11 @@ h3 {
     font-size: 18px;
 }
 .login-form div {
+    margin: 10px;
+    color: #001242;
+    font-size: 18px;
+}
+.add-new-book div {
     margin: 10px;
     color: #001242;
     font-size: 18px;
