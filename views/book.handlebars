@@ -16,10 +16,18 @@
       Sorry, this book is not available.<br>
       {{else}}
       Good news! this book is available!<br>
+      <div class="add-book-date">
+                <p>Select a return date.</p>
+               <input type="text" id="rangeDate" placeholder="Please select Date Range" data-input>
+            </div>
       <button class="check-out-book">Check Out</button>
       {{/if}}
+      
+        {{#if book.return_date}}
+        <p>Returned on {{book.return_date}}</p>
+        {{/if}}
       {{#if checkedOut}}
-      <button class="check-in-book">Return this boook</button>
+      <button class="check-in-book">Return this book</button>
       {{/if}}
       {{#if onWishlist}}
       <button id="remove-from-wishlist" data-id={{wish.book.id}}>Remove from wishlist</button>
@@ -54,6 +62,11 @@
 <a href="/addbook" id = "add-a-book">Add A Book</a>
 </div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+Available Themes
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script type="module" src="/javascript/vue.js"></script>
 
 <script src="/javascript/checkout-book.js"></script>
 <script src="/javascript/remove-from-wishlist.js"></script>

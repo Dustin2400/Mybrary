@@ -137,6 +137,7 @@ router.put('/:id', withAuth, (req, res) => {
     Book.update(
         {
             checked_out: req.body.checked_out,
+            return_date: req.body.return_date,
             user_id: req.session.user_id
         },
         {
@@ -162,6 +163,7 @@ router.put('/checkin/:id', withAuth, (req, res) => {
     Book.update(
         {
             checked_out: req.body.checked_out,
+            return_date: null,
             user_id: req.body.user_id
         },
         {

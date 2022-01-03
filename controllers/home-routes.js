@@ -58,7 +58,7 @@ router.get('/book/:id', (req, res) => {
             'title',
             'author',
             'checked_out',
-            // 'return_date',
+            'return_date',
             'category_id',
             'user_id',
             [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE book.id = vote.book_id)'), 'vote_count']
