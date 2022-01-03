@@ -38,10 +38,10 @@ Book.init(
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        // return_date: {
-        //     type: DataTypes.DATE,
-        //     allowNull: true,
-        // },
+        return_date: {
+            type: DataTypes.DATEONLY,
+            allowNull: true,
+        },
         category_id: {
             type: DataTypes.INTEGER,
             refernces: {

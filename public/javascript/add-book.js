@@ -1,3 +1,4 @@
+
 async function newFormHandler(event) {
     event.preventDefault();
 
@@ -41,13 +42,12 @@ async function newFormHandler(event) {
             alert(newCategoryResponse.statusText);
         }
     }
-    console.log(title, author, category_id);
     const response = await fetch(`/api/books`, {
         method: 'POST',
         body: JSON.stringify({
             title,
             author,
-            category_id
+            category_id,
         }),
         headers: {
             'Content-Type': 'application/json'

@@ -26,10 +26,13 @@
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "express.js": "^1.0.0",
+    "flatpickr": "^4.6.9",
     "handlebars": "^4.7.7",
     "jest": "^27.4.5",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.12.0"
+    "sequelize": "^6.12.0",
+    "v-calendar": "^2.3.4",
+    "vue": "^2.6.14"
   }
 }

@@ -13,6 +13,7 @@ const BookData = [
         title: 'Farenheit 451',
         author: 'Ray Bradbury',
         checked_out: true,
+        return_date: "01-19-2022",
         votes: 6,
         category_id: 1,
         user_id: 3
