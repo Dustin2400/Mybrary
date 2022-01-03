@@ -11,5 +11,3 @@ router.use((req, res) => {
 });
 
 module.exports = router;
-
-//implement more routes as you go on 

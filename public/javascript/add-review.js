@@ -1,7 +1,6 @@
 async function newFormHandler(event) {
     event.preventDefault();
 
-    // const user_id = document.querySelector('input[name="review-id"]').value; 
     const book_el = document.querySelector('#review-content');
     const content = document.querySelector('textarea[name="review-content"]').value.trim();
     const book_id = book_el.getAttribute('data-id');
@@ -19,7 +18,6 @@ async function newFormHandler(event) {
 
     console.log(content, response);
 
-    //account route replaces dashboard if visible in other public files
     if(response.ok) {
         document.location.replace('/account')
     } else {

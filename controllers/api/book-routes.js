@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection'); //for Vote object if implemented
+const sequelize = require('../../config/connection'); 
 const withAuth = require('../../utils/auth');
 const { Book, Category, Review, User, Vote, Wish } = require('../../models');
 
@@ -184,30 +184,5 @@ router.put('/checkin/:id', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
-
-// DELETE - DELETE a book by its respective id
-// router.delete('/:id', withAuth, (req, res) => {
-//     console.log('id', req.params.id);
-//     Book.destroy({
-//         where: {
-//             id: req.params.id
-//         }
-//     })
-//     .then(dbBookData => {
-//         if(!dbBookData) {
-//             res.status(400).json({ message: 'No book found.'});
-//             return;
-//         }
-//         res.json(dbBookData);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// });
-
-//votes attach to books - should implement as a book attribute - vote considered as potential Model/api
-//do we need to implement a book image cover - ask the TAs - upload asset in public file then relative path in database or object itself?
-//once fullstack is together - login will be implemented aside other features 
 
 module.exports = router;

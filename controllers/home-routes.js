@@ -113,12 +113,6 @@ router.get('/book/:id', (req, res) => {
     });
 });
 
-// search functionality not made at this time - mickey
-// router.get('/search', (req, res) => {
-//     res.render('search');
-// });
-
-
 router.get('/addreview/:id',  (req, res) => {
     Book.findOne({
         where: {

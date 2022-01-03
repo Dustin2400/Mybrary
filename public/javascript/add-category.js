@@ -15,7 +15,6 @@ async function newFormHandler(event) {
         }
     });
 
-    //again no dashboard yet lol 
     if(response.ok) {
         document.location.replace('/account');
     } else {

@@ -2,13 +2,12 @@ async function newFormHandler(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-    //for book check-in 
+    
     const response = await fetch(`/api/books/checkin/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             user_id: null,
             checked_out: false,
-            // return_date: null - functionality not added
         }),
         headers: {
             'Content-Type': 'application/json'

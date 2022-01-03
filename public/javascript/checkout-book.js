@@ -23,8 +23,6 @@ async function newFormHandler(event) {
     } else {
         alert(response.statusText);
     }
-
-    //userid can get pulled from session 
 }
 
 document.querySelector('.check-out-book').addEventListener('click', newFormHandler);
