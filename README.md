@@ -6,3 +6,5 @@ Future Considerations
 - Book Club meeting option
 - Advanced Search functionality
 - Category additions/deletion
+
+Flatpickr (vue.js file in Public/JS)
