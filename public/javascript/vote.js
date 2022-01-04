@@ -20,4 +20,4 @@ async function voteClickHandler(event) {
     }
 }
 
-document.querySelector('#vote-btn').addEventListener('click', voteClickHandler);
+document.querySelector('#vote-a-book').addEventListener('click', voteClickHandler);
