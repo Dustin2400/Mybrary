@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
             {
                 model: User,
                 attributes: ['username']
-            }
+            },
         ]
     })
     .then(dbBookData => res.json(dbBookData))
@@ -54,6 +54,9 @@ router.get('/:id', (req, res) => {
             {
                 model: User,
                 attributes: ['username']
+            },
+            {
+                model: Vote
             }
         ]
     })
@@ -90,8 +93,11 @@ router.post('/', withAuth, (req, res) => {
 //PUT - vote addon for each book as voted by users 
 router.put('/vote', withAuth, (req, res) => {
     if(req.session){
+        console.log(req.body)
         Book.upvote({...req.body, user_id: req.session.user_id }, {Vote, Review, User})
-        .then(votedData => res.json(votedData))
+        .then(votedData => {
+            res.json(votedData);
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
