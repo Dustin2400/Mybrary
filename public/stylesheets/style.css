@@ -156,7 +156,7 @@ h3 {
     width: 75%;
     margin: auto;
 }
-.sign-up-page, .login-page, .edit-form-page, .add-book {
+.sign-up-page, .login-page, .edit-form-page, .add-book, .new-form-page{
     text-align: center;
     width: 50%;
     margin: 70px auto;
@@ -195,6 +195,11 @@ h3 {
     color: #001242;
     font-size: 18px;
 }
+.add-review div {
+    margin: 30px;
+    color: #001242;
+    font-size: 18px;
+}
 .review-content textarea {
     margin: 15px;
 }
@@ -203,4 +208,36 @@ h3 {
 }
 .account-title {
     margin: 30px auto;
+}
+.links {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 980px) {
+    ul {
+        width: 100%;
+    }
+    .sign-up-page {
+        width: 80%;
+    }
+    .book-card {
+        width: 60%;
+    }
+    .reviews, .single-book {
+        width: 80%;
+    }
+    h2 {
+        font-size: 80px;
+    }
+}
+@media screen and (max-width: 768px) {
+    ul {
+        flex-wrap: wrap;
+    }
+    .wish {
+        width: 75%;
+    }
+    .sign-up-page, .login-page, .edit-form-page, .add-book, .new-form-page{
+        width: 80%;
+    }
 }
