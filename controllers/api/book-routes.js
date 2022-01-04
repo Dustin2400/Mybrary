@@ -71,7 +71,7 @@ router.get('/:id', (req, res) => {
 });
 
 //CREATE/POST Book - made by user
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Book.create({
         title: req.body.title,
         author: req.body.author,
@@ -131,7 +131,6 @@ router.delete('/wishlistRemove', withAuth, (req, res) => {
         })
     }
 })
-//PUT - update book based on id and other attributes when needed - test out 
 
 router.put('/:id', withAuth, (req, res) => {
     Book.update(

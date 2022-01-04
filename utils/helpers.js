@@ -1,1 +1,5 @@
-//for module.exports - tests of date format, plural word usage (if applied in project for number of reviews or upvotes), format url - possibly help with book search
+module.exports = {
+    format_date: date => {
+        return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
+    }
+};

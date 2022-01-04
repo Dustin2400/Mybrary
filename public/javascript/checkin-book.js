@@ -14,13 +14,6 @@ async function newFormHandler(event) {
         }
     });
 
-    
-    //test and insert date format for checked in book date, followed by seeing previous checkout date
-    
-    //takes in checkin attribute from true to false
-    //PUT method
-    //then adds the user_id to see who is checking in the book and becomes null
-
     if(response.ok) {
         document.location.replace('/account');
     } else {

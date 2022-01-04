@@ -5,13 +5,12 @@ async function newFormHandler(event) {
     
     const return_date = document.querySelector('#rangeDate').value;
     console.log(return_date);
-    //for book check-out
+    
     const response = await fetch(`/api/books/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             checked_out: true,
             return_date
-            // return_date: null - functionality not added
         }),
         headers: {
             'Content-Type': 'application/json'

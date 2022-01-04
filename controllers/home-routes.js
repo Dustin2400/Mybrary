@@ -113,7 +113,7 @@ router.get('/book/:id', (req, res) => {
     });
 });
 
-router.get('/addreview/:id',  (req, res) => {
+router.get('/addreview/:id', withAuth, (req, res) => {
     Book.findOne({
         where: {
            id: req.params.id
@@ -213,7 +213,7 @@ router.get('/editReview/:id', withAuth,  (req, res) => {
     })
 });
 
-router.get('/addbook', (req, res) => {
+router.get('/addbook', withAuth, (req, res) => {
     Category.findAll()
     .then(dbCategoryData => {
         const category = dbCategoryData.map(category => category.get({ plain: true }));

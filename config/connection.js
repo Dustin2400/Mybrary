@@ -15,5 +15,6 @@ if (process.env.JAWSDB_URL) {
     });
 }
 //heroku deployment will be last step
+//jawsdb must be installed following link deployment
 
 module.exports = sequelize;

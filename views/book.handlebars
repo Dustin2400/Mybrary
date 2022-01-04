@@ -18,13 +18,13 @@
       Good news! this book is available!<br>
       <div class="add-book-date">
                 <p>Select a return date.</p>
-               <input type="text" id="rangeDate" placeholder="Please select Date Range" data-input>
+               <input type="text" id="rangeDate" placeholder="Select date" data-input>
             </div>
       <button class="check-out-book">Check Out</button>
       {{/if}}
       
         {{#if book.return_date}}
-        <p>Returned on {{book.return_date}}</p>
+        <p>Return on {{format_date book.return_date}}</p>
         {{/if}}
       {{#if checkedOut}}
       <button class="check-in-book">Return this book</button>

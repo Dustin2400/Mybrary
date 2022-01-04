@@ -7,4 +7,4 @@ Future Considerations
 - Advanced Search functionality
 - Category additions/deletion
 
-Flatpickr (vue.js file in Public/JS)
+Vue.js - Flatpickr (vue.js file in Public/JS)
