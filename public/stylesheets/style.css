@@ -1,7 +1,6 @@
 html {
     background-image: linear-gradient(160deg, #0cf574, #15e6cd, #0bc9cd, #587261);
     font-family:  'book antiqua', serif;
-    height: 100%;
 }
 header {
     background-color: #2f97c1;
@@ -242,5 +241,6 @@ h3 {
         width: 80%;
     }
     .main-title a{
-        height: 45px;
+        height: 35px;
+        margin: 0;
 }
