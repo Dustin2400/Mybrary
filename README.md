@@ -30,13 +30,13 @@ Unlike the other buttons, this one is located at the bottom-left of the website.
  
 
 # Table of Contents
-- [User Story] (#User-Story)
-- [Technologies Used] (#Technologies-Used)
-- [Process] (#Process)
-- [Installation] (#Installation)
-- [Future Plans] (#Future-Plans)
-- [Usage] (#Usage)
-- [Credits] (#Credits) 
+- [User Story](#User-Story)
+- [Technologies Used](#Technologies-Used)
+- [Process](#Process)
+- [Installation](#Installation)
+- [Future Plans](#Future-Plans)
+- [Usage](#Usage)
+- [Credits](#Credits) 
 
 # User Story
 * We wanted to give users a chance to interact with others through their favorite books. With this interaction, it allows users to give their thoughts on books, and have conversations with other book lovers no matter where they are. 
