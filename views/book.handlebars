@@ -14,18 +14,22 @@
     <p>
       {{#if book.checked_out}}
       Sorry, this book is not available.<br>
+      
+        {{#if book.return_date}}
+        <p>Return on {{format_date book.return_date}}</p>
+        {{/if}}
       {{else}}
       Good news! this book is available!<br>
+      {{/if}}
+      {{#if loggedIn}}
+      {{#if book.checked_out}}
+      {{else}}
       <div class="add-book-date">
                 <p>Select a return date.</p>
                <input type="text" id="rangeDate" placeholder="Select date" data-input>
             </div>
       <button class="check-out-book">Check Out</button>
       {{/if}}
-      
-        {{#if book.return_date}}
-        <p>Return on {{format_date book.return_date}}</p>
-        {{/if}}
       {{#if checkedOut}}
       <button class="check-in-book">Return this book</button>
 
@@ -34,6 +38,7 @@
       <button id="remove-from-wishlist" data-id={{wish.book.id}}>Remove from Wishlist</button>
       {{else}}
       <button id="add-to-wishlist">Add to Wishlist</button>
+      {{/if}}
       {{/if}}
     </p>
   </div>
@@ -59,9 +64,12 @@
 {{/each}}
 {{/if}}
 <div class="links">
+ {{#if loggedIn}}
 <a href="/account" id="vote-a-book">Vote For This Book</a>
 <a href="/addreview/{{book.id}}" id="add-a-review">Add A Review</a>
 <a href="/addbook" id = "add-a-book">Add A Book</a>
+<button id="delete-book">Delete this book</button>
+{{/if}}
 </div>
 </div>
 
@@ -76,3 +84,4 @@
 <script src="/javascript/vote.js"></script>
 <script src="/javascript/add-to-wishlist.js"></script>
 <script src="/javascript/checkin-book.js"></script>
+<script src="/javascript/delete-book.js"></script>
