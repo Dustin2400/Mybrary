@@ -4,7 +4,6 @@ async function newFormHandler(event) {
     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
     
     const return_date = document.querySelector('#rangeDate').value;
-    console.log(return_date);
     
     const response = await fetch(`/api/books/${id}`, {
         method: 'PUT',
