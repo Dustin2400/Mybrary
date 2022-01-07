@@ -1,33 +1,33 @@
 # MyBrary - Interactive Rental Library
 
-![MyBrary Homepage]() //homepage here//
+![MyBrary - Homepage](./demo/homepage.png)
 
 # Description
 MyBrary is your home for interactive book rentals.  MyBrary allows users to rent, review, vote for, add, and delete their favorite books to the website.  Users can also search and filter books by using the title, author, and category. Books can be rented for any amount of time, and the website allows them to be returned. 
 
-![MyBrary Account]() //account screenshot//
+![MyBrary - Account](./demo/account.png)
 Users will be able to see their account information on this page. This information includes their book reviews, and books they've checked out.
 
-![MyBrary Checkout-Books]() //check-out book screenshot//
+![MyBrary - Check-Out](./demo/book-check-out.png)
 On this page, users can check out their favorite books, and choose a date to return it.
 
-![MyBrary Checkin]() //check-in screenshot// 
+![MyBrary - Check-In](./demo/book-check-in.png)
 On this page, you can check in your book. 
 
-![MyBrary Add-Review]() //add review screenshot//
+![MyBrary - Votes](./demo/votes.png)
+On every book on MyBrary, users have the option to vote for their favorite book. 
+
+![MyBrary - Add-Review](./demo/add-review.png)
 On this page, users can add a review of a book.
 
-![MyBrary Edit-Review]() //edit review screenshot//
+![MyBrary - Edit-Review](./demo/edit-review.png)
 On this page, users have the option to edit their or delete their review. 
 
-![MyBrary Wishlist]() //wishlist screenshot//
+![MyBrary - Wishlist](./demo/wishlist.png)
 On this page, it will show the user what books they'd like to check out in the future. 
 
-![MyBrary Add-A-Book]() //add a book screenshot//
+![MyBrary - Add-A-Book](./demo/add-a-book.png)
 Unlike the other buttons, this one is located at the bottom-left of the website. On this page, users can add their favorite books to the site. 
-
-![MyBrary Delete-A-Book]() //delete a book screenshot//
- 
 
 # Table of Contents
 - [User Story](#User-Story)
