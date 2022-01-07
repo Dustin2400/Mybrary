@@ -190,4 +190,23 @@ router.put('/checkin/:id', withAuth, (req, res) => {
     });
 });
 
+router.delete('/:id', withAuth, (req,res) => {
+    Book.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbBookData => {
+        if(!dbBookData) {
+            res.status(400).json({ message: 'No book found.'});
+            return;
+        }
+        res.json(dbBookData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+});
+
 module.exports = router;
